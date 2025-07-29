@@ -1,0 +1,6 @@
+flask
+requests
+elevenlabs==0.2.27
+SpeechRecognition
+pyaudio
+python-dotenv
