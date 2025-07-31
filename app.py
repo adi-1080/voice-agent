@@ -15,7 +15,7 @@ scheduler = BackgroundScheduler()
 logging.basicConfig(level=logging.INFO, format='[%(asctime)s] %(message)s')
 
 def cron_job():
-    logging.info("Running Cron Job at: ", datetime.now())
+    logging.info("Running Cron Job at: %s", datetime.now())
 
 scheduler.add_job(cron_job, 'interval', seconds=60)
 scheduler.start()
