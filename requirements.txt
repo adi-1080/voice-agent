@@ -2,3 +2,4 @@ flask
 requests
 SpeechRecognition
 python-dotenv
+gunicorn
