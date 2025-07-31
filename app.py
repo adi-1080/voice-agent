@@ -4,7 +4,6 @@ from datetime import datetime, timedelta
 import calendar
 from flask_cors import CORS
 from apscheduler.schedulers.background import BackgroundScheduler
-import datetime
 import logging
 
 app = Flask(__name__)
@@ -16,7 +15,7 @@ scheduler = BackgroundScheduler()
 logging.basicConfig(level=logging.INFO, format='[%(asctime)s] %(message)s')
 
 def cron_job():
-    logging.info("Running Cron Job at: ", datetime.datetime.now())
+    logging.info("Running Cron Job at: ", datetime.now())
 
 scheduler.add_job(cron_job, 'interval', seconds=60)
 scheduler.start()
