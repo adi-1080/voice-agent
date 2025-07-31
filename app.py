@@ -3,10 +3,24 @@ import json
 from datetime import datetime, timedelta
 import calendar
 from flask_cors import CORS
+from apscheduler.schedulers.background import BackgroundScheduler
+import datetime
+import logging
 
 app = Flask(__name__)
 
 CORS(app)
+
+scheduler = BackgroundScheduler()
+
+logging.basicConfig(level=logging.INFO, format='[%(asctime)s] %(message)s')
+
+def cron_job():
+    logging.info("Running Cron Job at: ", datetime.datetime.now())
+
+scheduler.add_job(cron_job, 'interval', seconds=60)
+scheduler.start()
+
 
 def load_json_file(filename):
     """Load JSON data from file"""
@@ -112,6 +126,14 @@ def log_booking():
     print(f"  Day: {data['day']}")
     print(f"  Slot: {data['slot']}")
     print("-" * 50)
+
+    # Log to console
+    logging.info(f"New Booking:")
+    logging.info(f"  Name: {data['name']}")
+    logging.info(f"  Doctor: {data['doctor']}")
+    logging.info(f"  Day: {data['day']}")
+    logging.info(f"  Slot: {data['slot']}")
+    logging.info("-" * 50)
     
     # Save to database, for now => add to appointments.json
     target_date = get_day_date(data['day'])
