@@ -2,8 +2,11 @@ from flask import Flask, request, jsonify
 import json
 from datetime import datetime, timedelta
 import calendar
+from flask_cors import CORS
 
 app = Flask(__name__)
+
+CORS(app)
 
 def load_json_file(filename):
     """Load JSON data from file"""
